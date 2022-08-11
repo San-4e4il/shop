@@ -1,12 +1,12 @@
 class Product
-  def initialize(name, count)
-    @name = name
-    @count = count
-  end
-  def name
-    return @name
-  end
-  def count
-    return @count
+  def initialize(name, author, genre, year, director, count)
+    @props = {
+      :name => name,
+      :author => author,
+      :genre => genre,
+      :year => year,
+      :director => director,
+      :count => count
+    }
   end
 end
