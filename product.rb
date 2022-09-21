@@ -1,12 +1,8 @@
 class Product
-  def initialize(name, author, genre, year, director, count)
-    @props = {
-      :name => name,
-      :author => author,
-      :genre => genre,
-      :year => year,
-      :director => director,
-      :count => count
-    }
+  def self.prod_types
+    return [Book, Film]
+  end
+  def self.create(type_index)
+    return prod_types[type_index].new
   end
 end

@@ -4,29 +4,29 @@ require_relative 'book'
 
 puts "Добро пожаловать в магазин"
 puts "Что вы хотите добавить в ассортимент?"
-choise = nil
+choices = Product.prod_types
+choice = -1
 all = []
-while(choise != 0) do
-  puts "1 - Книгу\n2 - Фильм\n0 - Закончить"
-  choise = gets.chomp.to_i
-  case choise
-  when 1
-    puts "Введите название, автора, жанр и количество на складе"
-    properites = gets.chomp.split(",")
-    prod = Book.new(properites[0],properites[1],properites[2],nil,nil, properites[3])
-    all << prod
-  when 2
-    puts "Введите название, режжисёра, год выхода и количество на складе"
-    properites = gets.chomp.split(",")
-    prod = Film.new(properites[0],nil ,nil ,properites[2],properites[1], properites[3])
-    all << prod
-  when 0
-    puts "Закончили"
+loop do
+  until choice >= 0 and choice <= choices.size
+    choices.each_with_index do |type, index|
+      puts "\t #{index} - #{type}"
+    end
+    puts "\t #{choices.size} - Прекратить"
+    choice = STDIN.gets.chomp.to_i
+  end
+  if choice == choices.size
+    break
   else
-    puts "Не правильно"
+    if choice < choices.size
+      prod = Product.create(choice)
+      properites = gets.chomp.split(",")
+      prod.add(properites[0],properites[1],properites[2], properites[3])
+      all << prod
+      choice = -1
+    end
   end
 end
 for i in all do
   puts i.to_s
 end
-

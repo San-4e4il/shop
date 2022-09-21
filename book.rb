@@ -1,8 +1,14 @@
 class Book < Product
-  def initialize(name, author, genre, year, director, count)
-    super
-    @props.delete(:director)
-    @props.delete(:year)
+  def initialize
+    puts "Введите название, автора, жанр и количество на складе"
+  end
+  def add(name, author, genre, count)
+    @props = {
+      :name => name,
+      :author => author,
+      :genre => genre,
+      :count => count
+    }
   end
   def to_s
      "Книга: #{@props[:name]}, #{@props[:genre]}.Автор - #{@props[:author]}. (Осталось #{@props[:count]} шт.)"
